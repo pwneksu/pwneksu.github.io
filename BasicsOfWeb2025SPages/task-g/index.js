@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const formEmail = document.getElementById("formEmail");
     const formPhone = document.getElementById("formPhone");
     const formBirthdate = document.getElementById("formBirthdate");
+    const formTerms = document.getElementById("formTerms");
 
     form.addEventListener("submit", (event) => {
         event.preventDefault();
@@ -29,6 +30,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const formBirthdateVal = formBirthdate.value.trim();
         if (!formBirthdateVal) return;
+
+        const formTermsVal = formTerms.value.trim();
+        if (!formTermsVal) return;
 
         // Create new table row
         const row = document.createElement("tr");
@@ -54,6 +58,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const birthdateCell = document.createElement("td");
         birthdateCell.textContent = formBirthdateVal;
         row.appendChild(birthdateCell);
+
+        const termsCell = document.createElement("td");
+        termsCell.textContent = formTerms.checked ? CHECK : CROSS;
+        row.appendChild(termsCell);
 
         table.appendChild(row);
 
