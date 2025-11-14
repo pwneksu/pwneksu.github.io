@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Weekly Timetable</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="index.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'page-bg': '#f6f8fb',
+            'brand': '#273e73',
+            'table-alt': '#eef3ff',
+            'border-gray': '#d0d7e2',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="h-full m-0 bg-[#f6f8fb] text-gray-800">
+  <!--
+    Author: Vertti K
+    Date: 2025-11-14
+  -->
+
+  <header class="pt-8 pb-4 bg-[#273e73] text-white">
+    <h1 class="text-[1.6rem] m-0 text-center">Registration page</h1>
+  </header>
+
+  <main class="md:mx-[15%] pt-4 pb-8">
+    <!-- Top row split into two blocks -->
+    <div class="flex mb-4 gap-4">
+      <!-- Student info (30%) -->
+      <section class="flex-[1_1_30%] bg-white border border-[#d0d7e2] rounded-lg p-3 px-4 shadow-sm" aria-label="Student information">
+        <h2 class="m-0 mb-2 text-lg">Information</h2>
+        <p><span class="m-0">Vertti K</span></p>
+        <p><span class="m-0 mt-2">NTIS24K</span></p>
+      </section>
+
+      <!-- Controls (70%): add course + day marks -->
+      <section class="flex-[1_1_70%] bg-white border border-[#d0d7e2] rounded-lg p-3 px-4 shadow-sm" aria-label="Add course row">
+        <h2 class="m-0 mb-2 text-lg">Registration</h2>
+
+        <form id="addCourseForm">
+          <input type="hidden" id="formTimestamp" name="formTimestamp">
+
+          <div class="flex gap-2 items-center my-2">
+            <label for="formName">Full Name</label>
+            <input id="formName" name="formName" type="text" required
+              pattern="^[A-Za-zÅÄÖåäö]{2,}(?:\s+[A-Za-zÅÄÖåäö]{2,})+$"
+              title="Enter at least two words, each at least 2 letters long." placeholder="Erkki Esimerkki"
+              class="flex-1 px-2.5 py-2 border border-[#d0d7e2] rounded-md">
+          </div>
+
+          <div class="flex gap-2 items-center my-2">
+            <label for="formEmail">Email</label>
+            <input id="formEmail" name="formEmail" type="email" required
+              title="Enter a valid email address (esim. name@example.com)." placeholder="esim. name@example.com"
+              class="flex-1 px-2.5 py-2 border border-[#d0d7e2] rounded-md">
+          </div>
+
+          <div class="flex gap-2 items-center my-2">
+            <label for="formPhone">Phone</label>
+            <input id="formPhone" name="formPhone" type="tel" required pattern="^\+358\d{5,10}$"
+              title="Finnish format: +358 followed by 5–10 digits (esim. +358401234567)."
+              placeholder="esim. +358401234567"
+              class="flex-1 px-2.5 py-2 border border-[#d0d7e2] rounded-md">
+          </div>
+
+          <div class="flex gap-2 items-center my-2">
+            <label for="formBirthdate">Birthdate</label>
+            <input id="formBirthdate" name="formBirthdate" type="date" required
+              title="Birthdate cannot be in the future."
+              class="flex-1 px-2.5 py-2 border border-[#d0d7e2] rounded-md">
+          </div>
+
+          <div class="flex gap-2 items-center my-2">
+            <label>
+              <input type="checkbox" id="formTerms" name="formTerms" required>
+              Accept Terms of Service
+            </label>
+          </div>
+
+          <div class="flex gap-2 items-center my-2">
+            <button id="addRowBtn" type="submit" class="px-3 py-2 border border-[#d0d7e2] rounded-md bg-[#f8fafc] cursor-pointer hover:bg-[#eef2f7]">Add row</button>
+            <button id="clearBtn" type="reset" class="px-3 py-2 border border-[#d0d7e2] rounded-md bg-white cursor-pointer hover:bg-[#eef2f7]">Clear</button>
+          </div>
+        </form>
+      </section>
+    </div>
+
+    <!-- Table -->
+    <div class="bg-white border border-[#d0d7e2] rounded-lg p-4 overflow-x-auto shadow max-[768px]:block">
+      <table class="w-full border-collapse text-base" id="timetable">
+        <thead>
+          <tr>
+            <th>Timestamp</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Birth Date</th>
+            <th>Terms Accepted</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+</body>
+
+</html>
